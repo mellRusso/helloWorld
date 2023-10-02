@@ -1,4 +1,4 @@
-package classesAndObjects;
+package classesAndObjects.Library;
 public class Book {
     String author;
     String title;

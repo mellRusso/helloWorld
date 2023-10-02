@@ -1,4 +1,4 @@
-package classesAndObjects;
+package classesAndObjects.Library;
 public class Library {
     Book availableBook; // информация о доступной книге!
     Book availableBook1; // информация о доступной книге!

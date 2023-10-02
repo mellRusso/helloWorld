@@ -1,17 +1,18 @@
-package classesAndObjects;
-public class Teacher {
+package classesAndObjects.Library;
+public class Person {
     String name;
-    Subject subject;
+    int age;
     Book borrowedBook;
     String lastBorrowedBook;
     public void display() {
-        System.out.println("Учитель: " + name + " | Учит: " + subject.title + " | " + "Предыдущая книга: " + lastBorrowedBook);
         if(borrowedBook != null) {
-            System.out.print("Взятая книга: ");
+            System.out.println("Name: "+ name + " Age: " + age + " | " + "Предыдущая книга: " + lastBorrowedBook);
             borrowedBook.display();
-        } else {
+        }
+        else {
             System.out.println("Ни одна книга не была взята напрокат.");
             System.out.println("Предыдущая книга: " + lastBorrowedBook);
         }
     }
+
 }
