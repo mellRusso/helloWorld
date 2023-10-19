@@ -205,7 +205,143 @@ public class ArraysWork {
             }
         }
         System.out.println(copyNum);
+        */
 
-         */
+        //Задача 1
+        /*
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+        int lengthIndex = array.length-1; //хранится последний эллементт массива
+        int copyArray = 0; //храним нынешний эллемент массива
+        for(int i = 0; i < array.length/2; i++) {
+            copyArray = array[i];
+            array[i] = array[lengthIndex]; //передаем эллементу с индексом n значение последнего эллемента
+            array[lengthIndex--] = copyArray; //последнему же эллементу передаем эллемент с индексом n
+        }
+        System.out.println(Arrays.toString(array));
+        */
+
+        //Задача 2
+        /*
+        int[] array = {1, 3, 5, 2, 5, 1, 2, 3};
+
+        int sumLeft = 0;
+        int sumRight = 0;
+        for(int i =0; i < array.length; i++) {
+            sumLeft += array[i];
+            for(int g = i + 1; g < array.length; g++) {
+                sumRight += array[g];
+            }
+            if(sumLeft == sumRight) {
+                System.out.println("Первое число: " + array[i]);
+                System.out.println("Второе число: " + array[i+1]);
+            }
+            sumRight = 0;
+        }
+        */
+
+        //Задача 3
+        /*
+        int[] array = {1, 4, 5, 1, 2, 3, 4, 8, 1, 2, 3, 4, 5, 6};
+        int[] newArray = new int[6];
+        int s = 0;
+        for(int i =1; i < array.length; i++) {
+            if(array[i-1] < array[i] && array[i-1] + 1 == array[i]) {
+                newArray[s++] = array[i-1];
+
+            }else {
+                s = 0;
+            }
+        }
+        newArray[newArray.length-1] = newArray.length-1+1;
+        System.out.println(Arrays.toString(newArray));
+        */
+
+        //Задача 4
+        /*
+        int[] array = {0, 1, 9, 0, 3, 12, 0};
+
+        int[] newArray = new int[array.length];
+        int indexNewArray = 0;
+
+        for(int arr : array) {
+          if(arr != 0) {
+              newArray[indexNewArray++] = arr;
+          }
+        }
+        while (indexNewArray < array.length) {
+            newArray[indexNewArray] = 0;
+            indexNewArray++;
+        }
+        System.out.println(Arrays.toString(newArray));
+        */
+
+        //ЗАДАЧА  5
+        /*
+        int[] array = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+
+         //сохраняем сумму всех элементов массива
+        int maxSum = 0; //максимальная сумма
+        for(int i = 0; i < array.length; i++) {
+            int sum = 0;
+            for(int g = i; g < array.length; g++) {
+                sum += array[g];
+                if(sum > maxSum) { //если больше меняем значение перменной maxSum
+                    maxSum = sum;
+                }
+            }
+
+        }
+        int[] newArray = new int[array.length];
+
+        for(int i = 0; i < array.length; i++) {
+            int sum = 0;
+            int indexNewArray = 0;
+            for(int g = i; g < array.length; g++) {
+                sum += array[g];
+                newArray[indexNewArray++] = array[g];
+                if(sum == maxSum) {
+                    break;
+                }
+            }
+            if(sum == maxSum) {
+                break;
+            }
+            for(int a = 0; a < newArray.length; a++) {
+                newArray[a] = 0;
+            }
+        }
+        System.out.println(Arrays.toString(newArray)); //вывод элементов которые дают наибольшую сумму!
+        */
+
+        //Задача 6
+        /*
+        int[] array = {1, 2, 3, 4, 5};
+        int number = 1;
+        int num = 1;
+
+        for(int i = 0; i < array.length; i++) {
+            int result = (number + i) % array.length;
+            array[result] = num++;
+        }
+
+        System.out.println(Arrays.toString(array));
+        */
+
+        //Задача 7
+        /*
+        int[] array = {1, 2, 3, 3, 4, 4, 5, 6, 6, 7, 7, 8, 8, 8, 9, 20, 20, 20, 20, 30};
+        int[] copyArray = new int[11];
+        int indexCopyArray = 0;
+        int index = 0;
+        copyArray[index] = array[0];
+        for(int i = 1; i < array.length; i++) {
+            if(array[index] != array[i]) { //сравниваем два эллемента! первый и эллемент после него! если не равные срабатывает условие
+                index++; //ПРИБАВЛЯЕМ К ИНДЕКСУ 1
+                array[index] = array[i]; //МАССИВ С ИНДЕКОМ И РАВНЯЕТСЯ СЛЕДУЮЩЕМУ ЗНАЧЕНИЮ С ИНДЕКСОМ И+1
+                copyArray[index] = array[i]; //В НОВЫЙ МАССИВ С ИНДЕКСОМ ОДИН ТАКЖЕ ДОБАВЛЯЕТСЯ ЗНАЧЕНИЕ И +1
+            }
+        }
+        System.out.println(Arrays.toString(copyArray));
+        */
     }
 }
