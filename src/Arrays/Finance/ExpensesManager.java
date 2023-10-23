@@ -15,7 +15,6 @@ public class ExpensesManager {
         }
         return moneyBeforeSalary; //возвращаем остаток на счете
     }
-
     double findMaxExpense() { //метод позволяющий найти максимальную трату за неделю!
         double maxExpense = 0; //инициализируем
         for (int i = 0; i < expenses.length; i++) { //пробегаемся по массиву с тратами

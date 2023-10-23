@@ -4,6 +4,7 @@ package Arrays.Finance;
 import java.util.Scanner;
 
 public class Test {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Сколько денег у вас осталось до зарплаты?");
