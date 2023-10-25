@@ -1,103 +1,59 @@
 package classesAndObjects.Library;
+
 public class Library {
-    Book availableBook; // информация о доступной книге!
-    Book availableBook1; // информация о доступной книге!
+    Book[] availableBook = new Book[10];
+    ; // информация о доступных книгах!
+    int indexAvailableBook = 0;
+    int indexBorrowedBook = 0;
+    int copyIndexAvailableBook = 0;
+    //копируем индекс массива для того чтобы потом вернуть книгу в библиотеку в тот же индекс с которого взяли!
+    int copyIndexBorrowedBook = 0;
 
+    public void addBook(Book book) {
+        availableBook[indexAvailableBook] = book;
+        System.out.println("Книга добавлена: " + book.title);
+        indexAvailableBook++;
+    }
 
-    public void display() { //проверяем какие книги есть в библиотеке! тут можно было бы использовать массив, но т.к мы его не проходили решил не добавлять!
-            if(availableBook != null && availableBook1 != null) {
-                System.out.println("Доступные книги: " + "| " + availableBook.title + " | " + availableBook1.title + " |");
-            } else if (availableBook != null && availableBook1 == null) {
-                System.out.println("Доступные книги: " + "| " + availableBook.title);
-            }else if (availableBook == null && availableBook1 != null) {
-                System.out.println("Доступные книги: " + "| " + availableBook1.title);
-            }else if (availableBook == null && availableBook1 == null) {
-                System.out.println("Книг нету");
+    public void displayLybrary() {
+        for (int i = 0; i < availableBook.length; i++) {
+            if (availableBook[i] != null) {
+                System.out.println(availableBook[i].title);
+
             }
-    }
-    public void lendBook(Student student) {
-        if(availableBook != null && student.borrowedBook == null) {
-            student.borrowedBook = availableBook;
-            availableBook = null;
-        } else if (availableBook1 != null && student.borrowedBook == null) {
-            student.borrowedBook = availableBook1;
-            availableBook1 = null;
-        } else {
-            System.out.println("Книга уже взята на прокат");
         }
     }
 
-    public void acceptBook(Student student, int rating) {
-        if(availableBook == null && student.borrowedBook != null) {
-            student.lastBorrowedBook = student.borrowedBook.title;
-            availableBook = student.borrowedBook;
-            student.borrowedBook = null;
-            availableBook.rating = rating;
-        } else if (availableBook1 == null && student.borrowedBook != null) {
-            student.lastBorrowedBook = student.borrowedBook.title;
-            availableBook1 = student.borrowedBook;
-            student.borrowedBook = null;
-            availableBook.rating = rating;
+    public String lendBook(Person person, String nameBook) {
+        if (availableBook != null) {
+            if (person.canBorrowMoreBooks()) {
+                for (int i = 0; i < availableBook.length; i++) {
+                    if (availableBook[i] != null) {
+                        if (nameBook.equals(availableBook[i].title)) {
+                            person.borrowedBook[indexBorrowedBook] = availableBook[i];
+                            copyIndexAvailableBook = i;
+                            copyIndexBorrowedBook = indexBorrowedBook;
+                            availableBook[i] = null;
+                            indexBorrowedBook++;
+                            person.lengthBooks++;
+                            return "Книга была взята";
+                        }
+                    }
+                }
+                return "Данной книги нету";
+            } else {
+                return "Вы не можете взять больше книг";
+            }
         } else {
-            System.out.println("В библиотеке уже есть книга");
+            return "В библиотеке нету книг";
         }
     }
 
-
-
-    public void lendBook(Teacher teacher) {
-        if(availableBook != null && teacher.borrowedBook == null) {
-            teacher.borrowedBook = availableBook;
-            availableBook = null;
-        } else if (availableBook1 != null && teacher.borrowedBook == null) {
-            teacher.borrowedBook = availableBook1;
-            availableBook1 = null;
-        } else {
-            System.out.println("Книга уже взята на прокат");
-        }
-    }
-
-    public void acceptBook(Teacher teacher, int rating) {
-        if(availableBook == null && teacher.borrowedBook != null) {
-            teacher.lastBorrowedBook = teacher.borrowedBook.title;
-            availableBook = teacher.borrowedBook;
-            teacher.borrowedBook = null;
-            availableBook.rating = rating;
-        } else if (availableBook1 == null && teacher.borrowedBook != null) {
-            teacher.lastBorrowedBook = teacher.borrowedBook.title;
-            availableBook1 = teacher.borrowedBook;
-            teacher.borrowedBook = null;
-            availableBook.rating = rating;
-        } else {
-            System.out.println("В библиотеке уже есть книга");
-        }
-    }
-
-    public void lendBook(Person person) {
-        if(availableBook != null && person.borrowedBook == null) {
-            person.borrowedBook = availableBook;
-            availableBook = null;
-        } else if (availableBook1 != null && person.borrowedBook == null) {
-            person.borrowedBook = availableBook1;
-            availableBook1 = null;
-        } else {
-            System.out.println("Книга уже взята!");
-        }
-    }
-
-    public void acceptBook(Person person, int rating) {
-        if(availableBook == null && person.borrowedBook != null) {
-            person.lastBorrowedBook = person.borrowedBook.title;
-            availableBook = person.borrowedBook;
-            person.borrowedBook = null;
-            availableBook.rating = rating;
-        } else if (availableBook1 == null && person.borrowedBook != null) {
-            person.lastBorrowedBook = person.borrowedBook.title;
-            availableBook1 = person.borrowedBook;
-            person.borrowedBook = null;
-            availableBook.rating = rating;
-        } else  {
-            System.out.println("В библиотеке уже есть книга");
+    public void acceptBook(Person person, String nameBook) {
+        if (person.borrowedBook != null) {
+            availableBook[copyIndexAvailableBook] = person.borrowedBook[copyIndexBorrowedBook];
+            person.historyOfBooks[person.indexHistoryofBooks++] = availableBook[copyIndexAvailableBook];
+            person.borrowedBook[copyIndexBorrowedBook] = null;
         }
     }
 }

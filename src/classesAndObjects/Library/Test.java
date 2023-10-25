@@ -1,56 +1,32 @@
 package classesAndObjects.Library;
+
+import java.util.Arrays;
+
 public class Test {
     public static void main(String[] args) {
-        Book book = new Book();
-        book.author = "Leo Tolstoy";
-        book.title = "War and Peace";
-        book.id = 1;
-        book.category = "roman";
 
-        Book book1 = new Book();
-        book1.author = "Clavell James";
-        book1.title = "Shogun";
-        book1.id = 222;
-        book1.category = "Roman";
+        Book book1 = new Book("Достоевский", "Подросток", 1);
+        Book book2 = new Book("Достоевский", "Братья Карамазовы", 2);
+        Book book3 = new Book("Достоевский", "Бессы", 3);
+        Book book4 = new Book("Достоевский", "Преступление и наказание", 4);
+
+        Teacher teacher = new Teacher("Nina", 46);
+
+        Student student = new Student("Petya", 21);
 
         Library library = new Library();
-        library.availableBook = book;
-        library.availableBook1 = book1;
+        library.addBook(book1);
+        library.addBook(book2);
+        library.addBook(book3);
+        library.addBook(book4);
 
+        library.lendBook(teacher, "Преступление и наказание");
+        library.lendBook(teacher, "Бессы");
+        String teacheLengthBook = library.lendBook(teacher, "Подросток");//не может взять третью книгу, т.к стоит ограничение
 
-        Student student = new Student();
-        student.name = "John";
-        student.studentId = 12345;
-
-        Subject subject = new Subject();
-        subject.title = "literature";
-
-        Teacher teacher = new Teacher();
-        teacher.name = "Elena";
-        teacher.subject = subject;
-
-
-        Person person = new Person(); //создаем человека лол
-        person.name = "Roma";
-        person.age = 17;
-
-
-        library.display();
-        library.lendBook(person);
-
-        library.display();
-        library.lendBook(student);
-
-        library.display();
-        library.acceptBook(person, 3);
-
-        library.display();
-        library.lendBook(teacher);
-
-        person.display();
-        student.display();
-        teacher.display();
-
+        library.lendBook(student, "Подросток");
+        String studentLengthBook = library.lendBook(student, "Братья Карамазовы");
+        //тоже самое касается и студента! студент может взять максимум одну книгу
 
     }
 }

@@ -1,18 +1,16 @@
 package classesAndObjects.Library;
-public class Student {
-    String name;
-    int studentId;
-    Book borrowedBook;
-    String lastBorrowedBook;
-    public void display() {
-        System.out.println("Студент: " + name + " | Студент Айди: " + studentId + " | " + "Предыдущая книга: " + lastBorrowedBook);
-        if(borrowedBook != null) {
-            System.out.print("Взятая книга: ");
-            borrowedBook.display();
 
-        } else {
-            System.out.println("Ни одна книга не была взята напрокат.");
-            System.out.println("Предыдущая книга: " + lastBorrowedBook);
-        }
+public class Student extends Person {
+
+    Book[] borrowedBook = new Book[1];
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override //переопределяеп метод у студента
+    public boolean canBorrowMoreBooks() {
+        return lengthBooks < 1;
     }
 }
