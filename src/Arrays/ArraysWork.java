@@ -344,4 +344,81 @@ public class ArraysWork {
         System.out.println(Arrays.toString(copyArray));
         */
     }
+    //Задача 1
+    public int maxDifference(int[] arr) {
+        int maxDifference = 0;
+        for(int i = 0; i < arr.length; i++) {
+            int mine = 0;
+            for(int g = i+1; g < arr.length; g++) {
+                if(arr[i] > arr[g]) {
+                    mine = arr[i] - arr[g];
+                    if(mine > maxDifference) {
+                        maxDifference = mine;
+                    }
+                }
+            }
+        }
+        return maxDifference;
+
+    }
+
+    //задача 2
+    public int[] rotate(int[] arr, int n) {
+        int index = 0;
+        int[] newArray = new int[arr.length];
+
+        for(int i = 0; i < arr.length; i++) {
+            index = (i + n) % arr.length;
+            int num = arr[i];
+            newArray[index] = num;
+        }
+        return newArray;
+    }
+
+    //задача 3
+    //разобрать на уроке
+
+    //задача 4
+    public int[] twoSum(int[] arr, int target) {
+        int[] newArr = new int[2];
+        for (int i = 0; i < arr.length; i++) {
+            int sum = 0;
+            int indexNewArr = 0; //это если вдруг в массиве окажется два числа дающие нужную нам  сумму
+            for(int g = i+1; g < arr.length; g++) {
+                sum = arr[i] + arr[g];
+                if(sum == target) {
+                    newArr[indexNewArr++] = arr[i];
+                    newArr[indexNewArr] = arr[g];
+                }
+            }
+        }
+        return newArr;
+    }
+
+    //задача 5
+    public int[] mergeSortedArrays(int[] arr1, int[] arr2) {
+        int[] newArr = new int[arr1.length + arr2.length];
+        int indexArr1 = 0;
+        int indexArr2 = 0;
+        int indexNewArr = 0;
+
+        for(; indexArr1 < arr1.length && indexArr2 < arr2.length; indexNewArr++) {
+            if(arr1[indexArr1] < arr2[indexArr2]) {
+                newArr[indexNewArr] = arr1[indexArr1];
+                indexArr1++;
+            }else {
+                newArr[indexNewArr] = arr2[indexArr2];
+                indexArr2++;
+            }
+        }
+
+        for(; indexArr1 < arr1.length; indexArr1++, indexNewArr++) {
+            newArr[indexNewArr] = arr1[indexArr1];
+        }
+
+        for(; indexArr2 < arr2.length; indexArr2++, indexNewArr++) {
+            newArr[indexNewArr] = arr2[indexArr2];
+        }
+        return newArr;
+    }
 }
