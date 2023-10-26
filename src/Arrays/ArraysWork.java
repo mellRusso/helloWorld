@@ -376,7 +376,27 @@ public class ArraysWork {
     }
 
     //задача 3
-    //разобрать на уроке
+    public int[] mostFrequent(int[] arr) {
+        //создаем массив который хранит 2 значения! первое значение число! второе значение количество повторениц!
+        int[] newArr = new int[2];
+
+        int maxPereat = 0;
+        for(int i = 0; i < arr.length; i++) {
+            int repeat = 0;
+            for(int g = i + 1; g < arr.length; g++) {
+                if(arr[i] == arr[g]) {
+                    repeat++;
+                }
+            }
+            if(repeat > maxPereat) {
+                maxPereat = repeat;
+                newArr[0] = arr[i];
+                newArr[1] = maxPereat;
+            }
+        }
+        return newArr;
+    }
+
 
     //задача 4
     public int[] twoSum(int[] arr, int target) {
@@ -412,11 +432,11 @@ public class ArraysWork {
             }
         }
 
-        for(; indexArr1 < arr1.length; indexArr1++, indexNewArr++) {
+        for(; indexArr1 < arr1.length; indexArr1++, indexNewArr++) { //оставшиеся эллементы
             newArr[indexNewArr] = arr1[indexArr1];
         }
 
-        for(; indexArr2 < arr2.length; indexArr2++, indexNewArr++) {
+        for(; indexArr2 < arr2.length; indexArr2++, indexNewArr++) { //оставшиеся эллементы
             newArr[indexNewArr] = arr2[indexArr2];
         }
         return newArr;
