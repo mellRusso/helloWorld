@@ -431,12 +431,16 @@ public class ArraysWork {
             }
         }
 
-        for(; indexArr1 < arr1.length; indexArr1++, indexNewArr++) { //оставшиеся эллементы
+        while (indexArr1 < arr1.length) {
             newArr[indexNewArr] = arr1[indexArr1];
+            indexArr1++;
+            indexNewArr++;
         }
 
-        for(; indexArr2 < arr2.length; indexArr2++, indexNewArr++) { //оставшиеся эллементы
+        while (indexArr2 < arr2.length) {
             newArr[indexNewArr] = arr2[indexArr2];
+            indexArr2++;
+            indexNewArr++;
         }
         return newArr;
     }
