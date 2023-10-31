@@ -1,59 +1,96 @@
 package classesAndObjects.Library;
 
 public class Library {
-    Book[] availableBook = new Book[10];
-    ; // информация о доступных книгах!
-    int indexAvailableBook = 0;
-    int indexBorrowedBook = 0;
-    int copyIndexAvailableBook = 0;
-    //копируем индекс массива для того чтобы потом вернуть книгу в библиотеку в тот же индекс с которого взяли!
-    int copyIndexBorrowedBook = 0;
+    private Book[] availableBook = new Book[10];
+    private int indexAvailableBook = 0;
+    private Person[] libraryReader = new Person[30];
+    private int indexLibraryReader = 0;
+    private Supplier supplier = new Supplier();
+    private int copyIndexAvailable;
 
     public void addBook(Book book) {
         availableBook[indexAvailableBook] = book;
-        System.out.println("Книга добавлена: " + book.title);
+        book.addTitleBook();
         indexAvailableBook++;
     }
 
-    public void displayLybrary() {
+    public void addReader(Person person) { //добавляем нового читателя
+        libraryReader[indexLibraryReader++] = person;
+    } //добавления читателей
+
+    public void displayLybrary() { //список книг
         for (int i = 0; i < availableBook.length; i++) {
             if (availableBook[i] != null) {
-                System.out.println(availableBook[i].title);
-
+                System.out.print(i+1 + ". ");
+                availableBook[i].listTitleBook();
             }
         }
     }
 
-    public String lendBook(Person person, String nameBook) {
-        if (availableBook != null) {
-            if (person.canBorrowMoreBooks()) {
-                for (int i = 0; i < availableBook.length; i++) {
-                    if (availableBook[i] != null) {
-                        if (nameBook.equals(availableBook[i].title)) {
-                            person.borrowedBook[indexBorrowedBook] = availableBook[i];
-                            copyIndexAvailableBook = i;
-                            copyIndexBorrowedBook = indexBorrowedBook;
-                            availableBook[i] = null;
-                            indexBorrowedBook++;
-                            person.lengthBooks++;
-                            return "Книга была взята";
-                        }
-                    }
+    public boolean reader(int id) { //список читателей. для проверки по айди
+        for(int i = 0; i < libraryReader.length; i++) {
+            if(libraryReader[i] != null) {
+                if(id == libraryReader[i].id) {
+                    return true;
                 }
-                return "Данной книги нету";
-            } else {
-                return "Вы не можете взять больше книг";
             }
-        } else {
-            return "В библиотеке нету книг";
+        }
+        return false;
+    }
+
+    public void lendBook(Person person, String nameBook) { //добавление книги
+        int indexBook = findAvailableBook(nameBook);
+        copyIndexAvailable = indexBook;
+        if(reader(person.id)) {
+            if (availableBook != null && indexBook != -1) {
+                if (person.canBorrowMoreBooks()) {
+                    person.borrowedBook[person.indexBorrowedBook++] = availableBook[indexBook];
+                    availableBook[indexBook] = null;
+                    person.lengthBooks++;
+                    System.out.println("ВЗял");
+                }else {
+                    System.out.println("Больше нельзя взять книг!");
+                }
+            }else {
+                System.out.println("Такой книги нету");
+            }
+        }else {
+            System.out.println("Вы не являетесь читателем библиотеки!");
         }
     }
 
-    public void acceptBook(Person person, String nameBook) {
-        if (person.borrowedBook != null) {
-            availableBook[copyIndexAvailableBook] = person.borrowedBook[copyIndexBorrowedBook];
-            person.historyOfBooks[person.indexHistoryofBooks++] = availableBook[copyIndexAvailableBook];
-            person.borrowedBook[copyIndexBorrowedBook] = null;
+    public void acceptBook(Person person, String nameBook) { //возврат книги
+        int indexBook = person.findBorrowedBook(person, nameBook);
+        if(person.borrowedBook != null && indexBook != -1) {
+            availableBook[copyIndexAvailable] = person.borrowedBook[indexBook];
+            person.historyOfBooks[person.indexHistoryofBooks++] = person.borrowedBook[indexBook];
+            person.borrowedBook = null;
+            person.lengthBooks--;
+            copyIndexAvailable = 0;
+            System.out.println("ПОложил");
+        }else {
+            System.out.println("Такой книги нету!");
+        }
+    }
+
+    public int findAvailableBook(String nameBook) { //поиск нужной книги
+        for(int i = 0; i < availableBook.length; i++) {
+            if(availableBook[i] != null) {
+                if(nameBook.equals(availableBook[i].listTitleBook(availableBook[i]))) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public void orderOfBook(String author, String book, int id) { //заказ книг
+        if(findAvailableBook(book) == -1) {
+            Book newBook = supplier.orderOfBooks(author, book, id);
+            availableBook[indexAvailableBook++] = newBook;
+            System.out.println("Книга заказана! и теперь доступна!");
+        }else {
+            System.out.println("Данная книга есть в библиотеке!");
         }
     }
 }

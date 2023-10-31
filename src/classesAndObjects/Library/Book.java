@@ -1,18 +1,28 @@
 package classesAndObjects.Library;
 
 public class Book {
-    String author;
-    String title;
-    int id;
+    private String author;
+    private String title;
+    private int id;
 
     Book(String author, String title, int id) {
         this.author = author;
         this.title = title;
         this.id = id;
     }
-
     void display() {
         System.out.println("ID: " + id + " | Book: " + title + "' by Author: '" + author);
+    }
+
+    public void addTitleBook() {
+        System.out.println("Добавлена книга: " + title);
+    }
+    public void listTitleBook() {
+        System.out.println(title);
+    }
+
+    public String listTitleBook(Book book) {
+        return book.title;
     }
 
 
