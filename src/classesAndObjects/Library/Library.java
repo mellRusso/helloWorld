@@ -43,7 +43,7 @@ public class Library {
         copyIndexAvailable = indexBook;
         if (reader(person.getId())) {
             if (availableBook != null && indexBook != -1) {
-                if (person.canBorrowMoreBooks()) {
+                if (person.canBorrowMoreBooks(person)) {
                     person.setBorrowedBook(availableBook[indexBook]);
                     availableBook[indexBook] = null;
                     System.out.println("ВЗял");

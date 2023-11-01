@@ -29,14 +29,8 @@ public class Test {
 
         library.lendBook(student, "Подросток");
         library.lendBook(student, "Бессы");
+        library.lendBook(student, "Братья Карамазовы");
 
-        library.acceptBook(student, "Подросток");
-        library.acceptBook(student, "Бессы");
-
-        student.displayHistory();
-
-        library.lendBook(teacher, "Подросток");
-        library.lendBook(teacher, "Бессы");
         /*
         while (true) {
             System.out.println("Добро пожаловать в библиотеку");

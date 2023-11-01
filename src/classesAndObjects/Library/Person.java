@@ -6,7 +6,7 @@ public class Person {
     private int age;
     private Book[] borrowedBook = new Book[10];
     private int indexBorrowedBook;
-    int lengthBooks;
+    private int lengthBooks;
 
     private Book[] historyOfBooks = new Book[100];
     private int indexHistoryofBooks;
@@ -21,7 +21,7 @@ public class Person {
 
     }
 
-    public boolean canBorrowMoreBooks() {
+    public boolean canBorrowMoreBooks(Person person) {
         return lengthBooks < 2;
     }
 
