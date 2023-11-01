@@ -10,6 +10,7 @@ public class Book {
         this.title = title;
         this.id = id;
     }
+
     void display() {
         System.out.println("ID: " + id + " | Book: " + title + "' by Author: '" + author);
     }
@@ -17,13 +18,12 @@ public class Book {
     public void addTitleBook() {
         System.out.println("Добавлена книга: " + title);
     }
+
     public void listTitleBook() {
         System.out.println(title);
     }
 
-    public String listTitleBook(Book book) {
+    public String getTitle(Book book) {
         return book.title;
     }
-
-
 }

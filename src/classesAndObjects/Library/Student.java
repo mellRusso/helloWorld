@@ -3,15 +3,14 @@ package classesAndObjects.Library;
 public class Student extends Person {
 
     Book[] borrowedBook = new Book[1];
+    Person person = new Person();
 
     Student(String name, int age, int id) {
-        this.name = name;
-        this.age = age;
-        this.id = id;
+        super(name, age, id);
     }
 
     @Override //переопределяеп метод у студента
     public boolean canBorrowMoreBooks() {
-        return lengthBooks < 5;
+        return person.getLengthBook() < 5;
     }
 }

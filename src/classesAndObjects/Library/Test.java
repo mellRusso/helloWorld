@@ -25,9 +25,18 @@ public class Test {
         library.addBook(book4);
         System.out.println("////////");
         library.addReader(student);
+        library.addReader(teacher);
 
         library.lendBook(student, "Подросток");
+        library.lendBook(student, "Бессы");
 
+        library.acceptBook(student, "Подросток");
+        library.acceptBook(student, "Бессы");
+
+        student.displayHistory();
+
+        library.lendBook(teacher, "Подросток");
+        library.lendBook(teacher, "Бессы");
         /*
         while (true) {
             System.out.println("Добро пожаловать в библиотеку");
@@ -47,7 +56,6 @@ public class Test {
 
          */
     }
-
     public static void displayMenu() {
         System.out.println("1. Список доступных книг");
     }
