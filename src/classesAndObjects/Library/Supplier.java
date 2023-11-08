@@ -1,10 +1,10 @@
 package classesAndObjects.Library;
 
 public class Supplier {
-    private Book newBooks;
+    private Book newBook;
 
-    public Book orderOfBooks(String author, String title, int id) {
-        newBooks = new Book(author, title, id);
-        return newBooks;
+    public Book setNewBook(String author, String title, int id) {
+        newBook = new Book(author, title, id);
+        return newBook;
     }
 }

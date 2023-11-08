@@ -5,7 +5,7 @@ public class Teacher extends Person {
         super(name, age, id);
     }
 
-    @Override //переопределяем метод у ученика
+    @Override //переопределяем метод у учителя
     public boolean canBorrowMoreBooks(Person person) {
         return person.getLengthBook() < 1;
     }

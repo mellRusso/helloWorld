@@ -17,6 +17,7 @@ public class Test {
         Student student = new Student("Petr", 13, 123);
         Teacher teacher = new Teacher("Roma", 34, 223);
 
+        Supplier supplier = new Supplier();
 
         Library library = new Library();
         library.addBook(book1);
@@ -25,11 +26,16 @@ public class Test {
         library.addBook(book4);
         System.out.println("////////");
         library.addReader(student);
-        library.addReader(teacher);
 
-        library.lendBook(student, "Подросток");
-        library.lendBook(student, "Бессы");
-        library.lendBook(student, "Братья Карамазовы");
+        Director director = new Director();
+        director.setTime(9, 21);
+
+
+        library.orderOfBook("Джорджа Оруэлл", "1984", 5); //заказываем книгу
+        library.displayLybrary();
+
+
+
 
         /*
         while (true) {
@@ -50,6 +56,7 @@ public class Test {
 
          */
     }
+
     public static void displayMenu() {
         System.out.println("1. Список доступных книг");
     }

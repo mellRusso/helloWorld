@@ -30,21 +30,27 @@ public class Person {
     }
 
     public Book setBorrowedBook(Book available) {
-        lengthBooks++;
         return borrowedBook[indexBorrowedBook++] = available;
+    }
+
+    public void addLengthBook() {
+        lengthBooks++;
     }
 
     public Book[] getBorrowedBook() {
         return borrowedBook;
     }
 
-    public Book setBorrowedBook(int indexBook) {
+    public Book getBorrowedBookIndex(int indexBook) {
         return borrowedBook[indexBook];
     }
 
     public void setBorrowedBook(int indexBook, Book book) {
-        lengthBooks--;
         borrowedBook[indexBook] = book;
+    }
+
+    public void subtrackLengthBook() {
+        lengthBooks--;
     }
 
     public void display() {
