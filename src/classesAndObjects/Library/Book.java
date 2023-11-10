@@ -19,11 +19,7 @@ public class Book {
         System.out.println("Добавлена книга: " + title);
     }
 
-    public void listTitleBook() {
-        System.out.println(title);
-    }
-
-    public String getTitle(Book book) {
-        return book.title;
+    public String getTitleBook() {
+        return title;
     }
 }

@@ -8,7 +8,7 @@ public class Person {
     private int indexBorrowedBook;
     private int lengthBooks;
 
-    private Book[] historyOfBooks = new Book[100];
+    private Book[] historyOfBooks = new Book[5];
     private int indexHistoryofBooks;
 
     Person(String name, int age, int id) {
@@ -57,7 +57,7 @@ public class Person {
         if (borrowedBook != null) {
             for (int i = 0; i < borrowedBook.length; i++) {
                 if (borrowedBook[i] != null) {
-                    System.out.println(borrowedBook[i].getTitle(borrowedBook[i]));
+                    System.out.println(borrowedBook[i].getTitleBook());
                 }
             }
         } else {
@@ -68,7 +68,7 @@ public class Person {
     public int findBorrowedBook(Person person, String nameBook) { //список отданных книг
         for (int i = 0; i < person.borrowedBook.length; i++) {
             if (person.borrowedBook[i] != null) {
-                if (nameBook.equals(person.borrowedBook[i].getTitle(person.borrowedBook[i]))) {
+                if (nameBook.equals(person.borrowedBook[i].getTitleBook())) {
                     return i;
                 }
             }
@@ -87,7 +87,7 @@ public class Person {
     public void displayHistory() {
         for (int i = 0; i < historyOfBooks.length; i++) {
             if (historyOfBooks[i] != null) {
-                System.out.println(historyOfBooks[i].getTitle(historyOfBooks[i]));
+                System.out.println(historyOfBooks[i].getTitleBook());
             }
         }
     }

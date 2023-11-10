@@ -3,8 +3,13 @@ package classesAndObjects.Library;
 public class Supplier {
     private Book newBook;
 
-    public Book setNewBook(String author, String title, int id) {
+    public void setNewBook(String author, String title, int id) {
         newBook = new Book(author, title, id);
+    }
+
+    public Book getNewBook() {
         return newBook;
     }
+
+
 }

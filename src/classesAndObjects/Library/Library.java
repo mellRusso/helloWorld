@@ -12,17 +12,25 @@ public class Library {
     private Date date = new Date();
     private static int workingHoursStart;
     private static int workingHoursFinish;
+    private String[] reviews = new String[20];
+    private int indexReviews;
 
     public void addBook(Book book) {
         availableBook[indexAvailableBook] = book;
+        System.out.println("Добавлена книга: ");
         book.addTitleBook();
         indexAvailableBook++;
     }
 
-    public void setWorkingHours(int workingHoursStart, int workingHoursFinish) {
-        this.workingHoursStart = workingHoursStart;
-        this.workingHoursFinish = workingHoursFinish;
+    public void setWorkingHours(Person person, int workingHoursStart, int workingHoursFinish) { //время работы библиотеки
+        if (person.getId() == 1) {
+            this.workingHoursStart = workingHoursStart;
+            this.workingHoursFinish = workingHoursFinish;
+        } else {
+            System.out.println("Вы не являетесь директором");
+        }
     }
+
 
     public void addReader(Person person) { //добавляем нового читателя
         libraryReader[indexLibraryReader++] = person;
@@ -33,7 +41,7 @@ public class Library {
         for (int i = 0; i < availableBook.length; i++) {
             if (availableBook[i] != null) {
                 System.out.print(g + ". ");
-                availableBook[i].listTitleBook();
+                System.out.println(availableBook[i].getTitleBook());
                 g++;
             }
         }
@@ -92,7 +100,7 @@ public class Library {
     public int findAvailableBook(String nameBook) { //поиск нужной книги
         for (int i = 0; i < availableBook.length; i++) {
             if (availableBook[i] != null) {
-                if (nameBook.equals(availableBook[i].getTitle(availableBook[i]))) {
+                if (nameBook.equals(availableBook[i].getTitleBook())) {
                     return i;
                 }
             }
@@ -102,11 +110,29 @@ public class Library {
 
     public void orderOfBook(String author, String book, int id) { //заказ книг
         if (findAvailableBook(book) == -1) {
-            Book newBook = supplier.setNewBook(author, book, id);
+            supplier.setNewBook(author, book, id);
+            Book newBook = supplier.getNewBook();
             availableBook[indexAvailableBook++] = newBook;
             System.out.println("Книга заказана! и теперь доступна!");
         } else {
             System.out.println("Данная книга есть в библиотеке!");
+        }
+    }
+
+    public void setReviews(String nameBook, String review) {
+        if (findAvailableBook(nameBook) != -1) {
+            reviews[indexReviews++] = nameBook + ": " + review;
+        } else {
+            System.out.println("Такой книги у нас нету! Но вы можете ее заказать");
+        }
+    }
+
+    public void getReviews() {
+        System.out.println("Отзывы на книги");
+        for (int i = 0; i < reviews.length; i++) {
+            if (reviews[i] != null) {
+                System.out.println(reviews[i]);
+            }
         }
     }
 }
