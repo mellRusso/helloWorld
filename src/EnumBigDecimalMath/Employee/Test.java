@@ -1,4 +1,4 @@
-package EnumBigDecimalMath;
+package EnumBigDecimalMath.Employee;
 
 import java.math.BigDecimal;
 
