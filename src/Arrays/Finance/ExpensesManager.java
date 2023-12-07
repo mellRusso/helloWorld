@@ -2,9 +2,11 @@ package Arrays.Finance;
 
 public class ExpensesManager {
     double[] expenses; //создаем массив который будет хранить траты за неделю.
+
     ExpensesManager() { //создаем конструктор в котором происходит инициализация массива
-         expenses= new double[7];
+        expenses = new double[7];
     }
+
     double saveExpense(double moneyBeforeSalary, int day, double expense) {
         //метод принимающий день и сумму траты за этот день! после отнимает сумму траты с общей суммы и показывает сколько осталось!
         moneyBeforeSalary = moneyBeforeSalary - expense; //отнимаем от общей суммы сумму траты!
@@ -15,6 +17,7 @@ public class ExpensesManager {
         }
         return moneyBeforeSalary; //возвращаем остаток на счете
     }
+
     double findMaxExpense() { //метод позволяющий найти максимальную трату за неделю!
         double maxExpense = 0; //инициализируем
         for (int i = 0; i < expenses.length; i++) { //пробегаемся по массиву с тратами
