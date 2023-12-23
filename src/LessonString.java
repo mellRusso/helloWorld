@@ -97,5 +97,35 @@ public class LessonString {
 
         String maskedText = text.replace(word, "*".repeat(word.length()));
         System.out.println(maskedText);*/
+
+        //Задачи с урока
+        //1. Напишите программу, которая принимает строку и выводит каждое второе слово в этой строке.
+        /*
+        String[] text = "Java is a widely used programming language".split(" "); //разделяем по пробелам
+        for(int i = 0; i < text.length; i++) {
+            if(i % 2 != 0) {
+                System.out.println(text[i]);
+            }
+        } */
+        //2. Напишите программу, которая принимает строку и слово, а затем определяет, сколько раз слово встречается в строке, игнорируя регистр букв.
+        /*
+        String text = "Java and JavaScript are not the same, but both are programming languages".toLowerCase(); //меняем регистр всех букв на мелкий
+        String word = "java".toLowerCase(); //здесь также меняем, т.к регистр нам не важен
+        int n = 0;
+        for (int i = 0; i < text.length(); i++) {
+            int index = text.indexOf(word, i);
+            if (index != -1) {
+                i = index;
+                n++;
+            }
+        }
+        System.out.println(n);
+
+
+        //3. Напишите программу, которая инвертирует порядок слов в предложении.
+        String[] text = "Java is fun to learn".split(" ");
+        for (int i = text.length - 1; i >= 0; i--) {
+            System.out.print(text[i] + " ");
+        }*/
     }
 }
